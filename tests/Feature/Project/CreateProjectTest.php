@@ -28,7 +28,7 @@ class CreateProjectTest extends TestCase
 
     public function testAuthenticatedUserCreateProject()
     {
-        $this->withExceptionHandling();
+        $this->withoutExceptionHandling();
 
         $this->actingAs($this->user);
 

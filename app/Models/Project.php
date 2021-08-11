@@ -30,4 +30,14 @@ class Project extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    /**
+     * Returning path of a single project
+     *
+     * @return string
+     */
+    public function path()
+    {
+        return '/projects/'.$this->id;
+    }
 }

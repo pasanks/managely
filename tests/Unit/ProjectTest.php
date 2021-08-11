@@ -22,4 +22,9 @@ class ProjectTest extends TestCase
     {
         $this->assertInstanceOf(User::class, $this->project->user);
     }
+
+    public function testProjectHasPath()
+    {
+        $this->assertEquals('/projects/' . $this->project->id, $this->project->path());
+    }
 }
