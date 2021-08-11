@@ -45,8 +45,6 @@ class CreateProjectTest extends TestCase
         $this->get('/projects')->assertSee($project->title);
     }
 
-
-
     public function testProjectRequiresTitle()
     {
         $this->actingAs($this->user);
