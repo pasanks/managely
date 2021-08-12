@@ -37,7 +37,7 @@ class CreateProjectTest extends TestCase
         $this->post('/projects', $project->toArray())
         ->assertRedirect('/projects');
 
-        $this->assertDatabaseHas('projects',[
+        $this->assertDatabaseHas('projects', [
             'title'=>$project->title,
             'description'=>$project->description,
         ]);

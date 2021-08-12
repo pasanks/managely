@@ -38,10 +38,22 @@ class UpdateProjectTest extends TestCase
 
         $this->put('/projects/' . $project->id, $project->toArray());
 
-        $this->assertDatabaseHas('projects',[
+        $this->assertDatabaseHas('projects', [
             'id'=>$project->id,
             'title'=>$project->title,
         ]);
+    }
+
+    public function testAuthenticatedUserCannotUpdateOtherUsersProject()
+    {
+        $this->actingAs($this->user);
+
+        $project = Project::factory()->create();
+
+        $project->title = 'Updated Project Title';
+
+        $this->put('/projects/' . $project->id, $project->toArray())
+        ->assertStatus(403);
     }
 
     public function testUnAuthorizedUserUpdateProject()
