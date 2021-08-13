@@ -11,15 +11,9 @@ class CreateProjectTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function setUp(): void
-    {
-        parent::setUp();
-
-        $this->user = User::factory()->create();
-    }
     public function testCreateProjectView()
     {
-        $this->actingAs($this->user);
+        $this->signIn();
 
         $response = $this->get('projects/create');
 
@@ -30,7 +24,7 @@ class CreateProjectTest extends TestCase
     {
         $this->withoutExceptionHandling();
 
-        $this->actingAs($this->user);
+        $this->signIn();
 
         $project = Project::factory()->make();
 
@@ -47,7 +41,7 @@ class CreateProjectTest extends TestCase
 
     public function testProjectRequiresTitle()
     {
-        $this->actingAs($this->user);
+        $this->signIn();
 
         $project = Project::factory()->make(['title'=>null]);
 
@@ -57,7 +51,7 @@ class CreateProjectTest extends TestCase
 
     public function testProjectRequiresDescription()
     {
-        $this->actingAs($this->user);
+        $this->signIn();
 
         $project = Project::factory()->make(['description'=>null]);
 

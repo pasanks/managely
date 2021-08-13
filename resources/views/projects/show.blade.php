@@ -15,6 +15,37 @@
                     <div>{{$project->description}}</div>
                 </div>
             </div>
+{{--            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">--}}
+{{--                <div class="p-6 bg-white border-b border-gray-200">--}}
+{{--                    <form method="POST" action="{{$project->path().'/tasks'}}">--}}
+{{--                        @csrf--}}
+{{--                        <div class="form-group row">--}}
+{{--                            <div class="col-8">--}}
+{{--                                <input id="body" name="body" placeholder="Add a new Task" type="text" class="form-control" required="required">--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    </form>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6 bg-white border-b border-gray-200">
+                    @forelse($project->tasks as $task)
+                        <div>{{$task->body}}</div>
+                    @empty
+                        <div>No tasks available</div>
+                    @endforelse
+                        <form method="POST" action="{{$project->path().'/tasks'}}">
+                            @csrf
+                            <div class="form-group row">
+                                <div class="col-8">
+                                    <input id="body" name="body" placeholder="Add a new Task" type="text" class="form-control" required="required">
+                                </div>
+                            </div>
+                        </form>
+                </div>
+
+            </div>
         </div>
     </div>
 @endsection

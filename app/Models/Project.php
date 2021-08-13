@@ -40,4 +40,26 @@ class Project extends Model
     {
         return '/projects/' . $this->id;
     }
+
+    /**
+     * project can have many tasks
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function tasks()
+    {
+        return $this->hasMany(Task::class);
+    }
+
+    /**
+     * Add a task to a project
+     *
+     * @var array $request
+     *
+     * @return Model
+     */
+    public function addTask(array $request)
+    {
+        return $this->tasks()->create($request);
+    }
 }
