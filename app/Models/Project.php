@@ -51,7 +51,6 @@ class Project extends Model
         return $this->hasMany(Task::class);
     }
 
-
     /**
      * Add a task to a project
      *

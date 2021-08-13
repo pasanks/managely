@@ -12,13 +12,6 @@ class BrowseProjectTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function setUp(): void
-    {
-        parent::setUp();
-
-        $this->user = User::factory()->create();
-    }
-
     public function testAuthenticatedUserCanViewProjects()
     {
         $this->signIn();
@@ -31,7 +24,7 @@ class BrowseProjectTest extends TestCase
 
     public function testAuthenticatedUserCanViewOwnProject()
     {
-        $this->actingAs($this->user);
+        $this->signIn();
 
         $project = Project::factory()->create(['user_id' => Auth::user()->id]);
 
@@ -41,7 +34,7 @@ class BrowseProjectTest extends TestCase
 
     public function testAuthenticatedUserCannotViewOtherUsersProject()
     {
-        $this->actingAs($this->user);
+        $this->signIn();
 
         $project = Project::factory()->create();
 

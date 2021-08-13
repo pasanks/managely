@@ -13,16 +13,9 @@ class DeleteProjectTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function setUp(): void
-    {
-        parent::setUp();
-
-        $this->user = User::factory()->create();
-    }
-
     public function testAuthorizedUserDeleteProject()
     {
-        $this->actingAs($this->user);
+        $this->signIn();
 
         $project =  Project::factory()->create(['user_id' => Auth::id()]);
 
@@ -33,7 +26,7 @@ class DeleteProjectTest extends TestCase
 
     public function testAuthorizedUserCannotDeleterOtherUsersProjects()
     {
-        $this->actingAs($this->user);
+        $this->signIn();
 
         $project =  Project::factory()->create();
 

@@ -12,16 +12,9 @@ class UpdateProjectTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function setUp(): void
-    {
-        parent::setUp();
-
-        $this->user = User::factory()->create();
-    }
-
     public function testUpdateProjectView()
     {
-        $this->actingAs($this->user);
+        $this->signIn();
 
         $response = $this->get('projects/edit');
 
@@ -30,7 +23,7 @@ class UpdateProjectTest extends TestCase
 
     public function testAuthorizedUserUpdateProject()
     {
-        $this->actingAs($this->user);
+        $this->signIn();
 
         $project = Project::factory()->create(['user_id'=> Auth::user()->id ]);
 
@@ -46,7 +39,7 @@ class UpdateProjectTest extends TestCase
 
     public function testAuthenticatedUserCannotUpdateOtherUsersProject()
     {
-        $this->actingAs($this->user);
+        $this->signIn();
 
         $project = Project::factory()->create();
 

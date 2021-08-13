@@ -26,7 +26,7 @@ class ProjectTasksController extends Controller
     }
 
     /**
-     * Update a task
+     * Update a task which is assigned to a project
      *
      * @param UpdateTaskRequest $request
      * @param Project $project
