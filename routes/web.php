@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProjectsController;
+use App\Http\Controllers\ProjectTasksController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -35,4 +36,10 @@ Route::group([
     Route::get('/projects/{project}', [ProjectsController::class, 'show'])->name('projects.show');
     Route::put('/projects/{project}', [ProjectsController::class, 'update'])->name('projects.update');
     Route::delete('/projects/{project}', [ProjectsController::class, 'destroy'])->name('projects.delete');
+
+    Route::post('/projects/{project}/tasks', [ProjectTasksController::class, 'store'])
+        ->name('projects.tasks.store');
+
+    Route::patch('/projects/{project}/tasks/{task}', [ProjectTasksController::class, 'update'])
+        ->name('projects.tasks.update');
  });
