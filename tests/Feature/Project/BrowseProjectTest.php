@@ -21,7 +21,7 @@ class BrowseProjectTest extends TestCase
 
     public function testAuthenticatedUserCanViewProjects()
     {
-        $this->actingAs($this->user);
+        $this->signIn();
 
         $project = Project::factory()->create(['user_id'=> Auth::user()->id]);
 

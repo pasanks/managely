@@ -26,7 +26,6 @@ class CreateProjectRequest extends FormRequest
         return [
             'title' => ['required', 'string', 'max:255'],
             'description' => ['required'],
-            'user_id' => ['required', 'numeric', 'exists:users,id'],
         ];
     }
 }
