@@ -77,13 +77,15 @@ class ProjectsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Project  $project
      *
-     * @return void
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(Request $request, Project $project)
     {
         $this->authorize('update', $project);
 
         $project->update($request->all());
+
+        return redirect($project->path());
     }
 
     /**

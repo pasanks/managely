@@ -26,6 +26,7 @@ class CreateProjectRequest extends FormRequest
         return [
             'title' => ['required', 'string', 'max:255'],
             'description' => ['required'],
+            'notes' => ['max:255'],
         ];
     }
 }

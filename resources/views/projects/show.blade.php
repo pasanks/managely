@@ -45,6 +45,20 @@
                         </form>
                 </div>
 
+                <div class="p-6 bg-white border-b border-gray-200">
+                    <form method="POST" action="{{$project->path()}}">
+                        @csrf
+                        @method('patch')
+                        <div class="form-group row">
+                            <div class="col-8">
+                                <textarea id="notes" name="notes" placeholder="Add notes" type="text"
+                                          class="form-control">{{$project->notes}}</textarea>
+                            </div>
+                            <button name="submit" type="submit" class="btn btn-primary">Save</button>
+                        </div>
+                    </form>
+                </div>
+
             </div>
         </div>
     </div>
