@@ -7,14 +7,9 @@
 @endsection
 
 @section('content')
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+    <div class="py-12 mx-3">
+            <div class="bg-white shadow rounded">
                 <div class="p-6 bg-white border-b border-gray-200">
-
-{{--                    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">--}}
-{{--                    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">--}}
-
                     <form method="POST" action="/projects">
                         @csrf
                         <div class="form-group row">
@@ -29,17 +24,15 @@
                                 <textarea id="description" name="description" cols="40" rows="5" class="form-control" required="required"></textarea>
                             </div>
                         </div>
-                        <div class="form-group row">
-                            <div class="col-4">
-                                <button name="submit" type="submit" class="btn btn-primary">Submit</button>
+                        <div class="form-group row flex">
+                            <div class="w-full">
+                                <button name="submit" type="submit" class="btn btn-primary">Create Project</button>
                             </div>
-                            <div class="col-4">
-                                <a href="/projects" class="btn btn-danger">Cancel</a>
-                            </div>
+
                         </div>
                     </form>
                 </div>
             </div>
-        </div>
+
     </div>
 @endsection

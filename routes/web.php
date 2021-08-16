@@ -41,5 +41,5 @@ Route::group([
         ->name('projects.tasks.store');
 
     Route::patch('/projects/{project}/tasks/{task}', [ProjectTasksController::class, 'update'])
-        ->name('projects.tasks.update   ');
+        ->name('projects.tasks.update');
  });

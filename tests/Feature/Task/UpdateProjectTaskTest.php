@@ -21,8 +21,7 @@ class UpdateProjectTaskTest extends TestCase
         $task = Task::factory()->create(['user_id'=> Auth::user()->id, 'project_id'=>$project->id]);
 
         $attributes = [
-            'body' => 'Changed Task',
-            'completed' => true,
+            'body' => 'Changed Task'
         ];
 
         $this->patch($task->path(), $attributes);
