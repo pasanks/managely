@@ -19,6 +19,7 @@ class Project extends Model
         'title',
         'description',
         'user_id',
+        'notes',
     ];
 
     /**

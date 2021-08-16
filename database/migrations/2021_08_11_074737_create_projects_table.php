@@ -17,6 +17,7 @@ class CreateProjectsTable extends Migration
             $table->id();
             $table->string('title');
             $table->mediumText('description');
+            $table->text('notes')->nullable();
             $table->foreignId('user_id')->constrained('users');
             $table->timestamps();
         });

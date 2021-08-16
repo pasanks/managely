@@ -25,7 +25,7 @@ class CreateTaskRequest extends FormRequest
     {
         return [
             'body' => ['required'],
-            'project_id' => ['required', 'numeric', 'exists:projects,id'],
+            'project_id' => ['numeric', 'exists:projects,id'],
         ];
     }
 }

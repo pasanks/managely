@@ -34,12 +34,12 @@ Route::group([
     Route::post('/projects', [ProjectsController::class, 'store'])->name('projects.store');
     Route::get('/projects/edit', [ProjectsController::class, 'edit'])->name('projects.edit');
     Route::get('/projects/{project}', [ProjectsController::class, 'show'])->name('projects.show');
-    Route::put('/projects/{project}', [ProjectsController::class, 'update'])->name('projects.update');
+    Route::patch('/projects/{project}', [ProjectsController::class, 'update'])->name('projects.update');
     Route::delete('/projects/{project}', [ProjectsController::class, 'destroy'])->name('projects.delete');
 
     Route::post('/projects/{project}/tasks', [ProjectTasksController::class, 'store'])
         ->name('projects.tasks.store');
 
     Route::patch('/projects/{project}/tasks/{task}', [ProjectTasksController::class, 'update'])
-        ->name('projects.tasks.update');
+        ->name('projects.tasks.update   ');
  });

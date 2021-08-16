@@ -34,6 +34,7 @@ class CreateProjectTest extends TestCase
         $this->assertDatabaseHas('projects', [
             'title'=>$project->title,
             'description'=>$project->description,
+            'notes'=>$project->notes,
         ]);
 
         $this->get('/projects')->assertSee($project->title);
