@@ -3,6 +3,7 @@
 namespace Tests\Unit;
 
 use App\Models\Project;
+use App\Models\Task;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
@@ -26,5 +27,12 @@ class ProjectTest extends TestCase
     public function testProjectHasPath()
     {
         $this->assertEquals('/projects/' . $this->project->id, $this->project->path());
+    }
+
+    public function testAddTask()
+    {
+        Task::factory()->create(['project_id'=> $this->project->id]);
+
+        $this->assertCount(1, $this->project->tasks);
     }
 }

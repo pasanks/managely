@@ -1,22 +1,35 @@
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Dashd board') }}
-        </h2>
-    </x-slot>
+@extends('layouts.layout-bootstrap')
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 bg-white border-b border-gray-200">
-                    <ul>
-                        @foreach($projects as $project)
-                            <li><a href="{{$project->path()}}">{{$project->title}}</a></li>
-                        @endforeach
-                    </ul>
+@section('header')
+    <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+        {{ __('All projects') }}
+    </h2>
 
+@endsection
+
+@section('content')
+
+    <div class="py-12 mx-3">
+        <div class="flex flex-wrap">
+            @forelse ($projects as $project)
+                <div class="w-1/3 px-3 pb-3">
+                    <div class="bg-white p-3 rounded shadow">
+                        <h3 class="font-normal text-xl py-4 -ml-4 mb-3 border-l-4 border-blue-600 pl-4">
+                            {{$project->title}}
+                        </h3>
+
+                        <div class="text-gray-500">
+                            {{$project->description}}
+                        </div>
+                        <div class="text-gray-500 ">
+                            <a class="no-underline" href="{{$project->path()}}">See more</a></li>
+                        </div>
+                    </div>
                 </div>
-            </div>
+
+            @empty
+                <div>No Projects yet</div>
+            @endforelse
         </div>
     </div>
-</x-app-layout>
+@endsection

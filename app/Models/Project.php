@@ -19,6 +19,7 @@ class Project extends Model
         'title',
         'description',
         'user_id',
+        'notes',
     ];
 
     /**
@@ -39,5 +40,27 @@ class Project extends Model
     public function path()
     {
         return '/projects/' . $this->id;
+    }
+
+    /**
+     * project can have many tasks
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function tasks()
+    {
+        return $this->hasMany(Task::class);
+    }
+
+    /**
+     * Add a task to a project
+     *
+     * @var array $request
+     *
+     * @return Model
+     */
+    public function addTask(array $request)
+    {
+        return $this->tasks()->create($request);
     }
 }

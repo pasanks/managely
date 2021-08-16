@@ -12,16 +12,9 @@ class UpdateProjectTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function setUp(): void
-    {
-        parent::setUp();
-
-        $this->user = User::factory()->create();
-    }
-
     public function testUpdateProjectView()
     {
-        $this->actingAs($this->user);
+        $this->signIn();
 
         $response = $this->get('projects/edit');
 
@@ -30,13 +23,13 @@ class UpdateProjectTest extends TestCase
 
     public function testAuthorizedUserUpdateProject()
     {
-        $this->actingAs($this->user);
+        $this->signIn();
 
         $project = Project::factory()->create(['user_id'=> Auth::user()->id ]);
 
         $project->title = 'Updated Project Title';
 
-        $this->put('/projects/' . $project->id, $project->toArray());
+        $this->patch('/projects/' . $project->id, $project->toArray());
 
         $this->assertDatabaseHas('projects', [
             'id'=>$project->id,
@@ -46,13 +39,13 @@ class UpdateProjectTest extends TestCase
 
     public function testAuthenticatedUserCannotUpdateOtherUsersProject()
     {
-        $this->actingAs($this->user);
+        $this->signIn();
 
         $project = Project::factory()->create();
 
         $project->title = 'Updated Project Title';
 
-        $this->put('/projects/' . $project->id, $project->toArray())
+        $this->patch('/projects/' . $project->id, $project->toArray())
         ->assertStatus(403);
     }
 
@@ -62,7 +55,7 @@ class UpdateProjectTest extends TestCase
 
         $project->title = 'Updated Project Title';
 
-        $this->put('/projects/' . $project->id, $project->toArray())
+        $this->patch('/projects/' . $project->id, $project->toArray())
         ->assertRedirect('/login');
     }
 }
