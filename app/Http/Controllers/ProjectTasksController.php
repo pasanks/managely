@@ -38,7 +38,9 @@ class ProjectTasksController extends Controller
     {
         $this->authorize('update', $task);
 
-        $task->update($request->validated());
+        $completed = $request->has('completed') ? true : false ;
+
+        $task->update(array_merge($request->validated(), ['completed' => $completed]));
 
         return redirect($project->path());
     }

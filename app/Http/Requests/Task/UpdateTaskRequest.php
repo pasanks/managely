@@ -25,7 +25,7 @@ class UpdateTaskRequest extends FormRequest
     {
         return [
             'body' => ['required'],
-            'completed' => ['sometimes', 'boolean'],
+            'completed' => ['boolean']
         ];
     }
 }
